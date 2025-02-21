@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> DestNotify </title>
+    <link rel="manifest" href="manifest.json">
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDv7AV98HrkjkRFuBcY1qlfMtHViZK-jRA&callback=initMap"></script>
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            text-align: center;
+            background-color: #121212;
+            color: white;
+            padding: 20px;
+        }
+
+        .destination {
+            margin-top: 10px;
+        }
+
+        .destination-card {
+            background: #1e1e1e;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px auto;
+            width: 80%;
+            text-align: left;
+            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+        }
+
+        #map {
+            width: 60%;
+            /* Adjust width as needed */
+            height: 400px;
+            /* Set desired height */
+            margin: auto;
+            /* Center the map */
+            border-radius: 10px;
+            /* Optional rounded corners */
+            border: 2px solid #488eda;
+            /* Optional border */
+        }
+
+        .destination-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+            margin-bottom: 8px;
+        }
+
+        .destination-title {
+            color: #ffcc00;
+        }
+
+        .destination-details p {
+            margin: 2px 0;
+            font-size: 0.9rem;
+            color: #ddd;
+        }
+
+        .map {
+            width: 10%;
+            height: 300px;
+            margin-top: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .alarm-select {
+            background-color: #1e1e1e;
+            color: #fff;
+            border-radius: 5px;
+            border: 1px solid #444;
+            padding: 8px 15px;
+            margin-bottom: 10px;
+        }
+
+        .play-pause-btn {
+            background-color: #ffcc00;
+            border: none;
+            color: black;
+            padding: 8px 15px;
+            margin-left: 10px;
+            border-radius: 5px;
+        }
+
+        .star-btn {
+            background: transparent;
+            border: none;
+            font-size: 30px;
+            color: gold;
+            cursor: pointer;
+        }
+        .favorite {
+   border: 2px solid #ffd700;
+    
+}
+
+    </style>
+</head>
+
+<body>
+    <h1 class="mb-3 text-warning">DestNotify</h1>
+    <p id="status">⏳ Waiting for location...</p>
+    <p id="current-location">📡 Fetching location...</p>
+
+    <h3>Available Alarm sounds</h3>
+    <select class="alarm-select" id="audioSelect" onchange="previewAlarm()">
+        <option value="alarm1.mp3">Alarm 1</option>
+        <option value="alarm2.mp3">Alarm 2</option>
+        <option value="alarm3.mp3">Alarm 3</option>
+        <option value="alarm4.mp3">Alarm 4</option>
+        <option value="alarm5.mp3">Alarm 5</option>
+        <option value="alarm6.mp3">Alarm 6</option>
+        <option value="alarm7.mp3">Alarm 7</option>
+        <option value="alarm8.mp3">Alarm 8</option>
+        <option value="alarm9.mp3">Alarm 9</option>
+    </select>
+    <button class="play-pause-btn" id="previewBtn" onclick="togglePreview()">Play</button>
+    <br>
+    <button class="btn btn-primary" onclick="setDestination()">➕ Add Destination</button> &nbsp;
+    <button class="btn btn-info" onclick="location.href='about.html'">ℹ️ About Us</button>&nbsp;
+    &nbsp;  &nbsp; 
+    <br><br>
+    <label>
+        <input type="checkbox" id="autoLearnToggle" onchange="toggleAutoLearning()"> Auto-Learn Favorites
+    </label>
+    
+
+    <br>
+    <button id="installBtn" class="btn btn-success mt-2" style="display: none;">📲 Install App</button>
+
+    <div id="map" style="width: 100%; height: 400px; margin-top: 20px;"></div>
+
+
+
+    <div id="destinations" class="mt-3"></div>
+
+
+   
+    <script>
+        let destinations = JSON.parse(localStorage.getItem("destinations")) || [];
+        let deferredPrompt;
+
+        let previewing = false;
+        let currentAudio = null;
+        let map;
+        let userMarker;
+
+        function initMap() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    const userLocation = { lat: position.coords.latitude, lng: position.coords.longitude };
+                    map = new google.maps.Map(document.getElementById("map"), {
+                        center: userLocation,
+                        zoom: 14,
+                        mapTypeId: 'roadmap'
+                    });
+                    userMarker = new google.maps.Marker({
+                        position: userLocation,
+                        map: map,
+                        title: "Your Location",
+                        icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+                    });
+
+                    // Listen for map clicks to add destination
+
+                }, (error) => {
+                    alert("⚠️ Please enable location access in your browser settings.");
+                });
+            } else {
+                alert("⚠️ Geolocation is not supported by this browser.");
+            }
+        }
+
+        let autoLearnEnabled = JSON.parse(localStorage.getItem("autoLearn")) ?? true;
+
+function toggleAutoLearning() {
+    autoLearnEnabled = !autoLearnEnabled;
+    localStorage.setItem("autoLearn", JSON.stringify(autoLearnEnabled));
+    updateStatus(`✅ Auto-Learn Feature  enabled`);
+
+
+}
+        function previewAlarm() {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+            const selectedAlarm = document.getElementById('audioSelect').value;
+            currentAudio = new Audio(selectedAlarm);
+            if (previewing) {
+                currentAudio.play();
+            }
+        }
+
+        function togglePreview() {
+            previewing = !previewing;
+            const previewBtn = document.getElementById('previewBtn');
+            if (previewing) {
+                previewBtn.textContent = "Pause ";
+                previewAlarm(); // Play the alarm immediately upon clicking preview button
+            } else {
+                previewBtn.textContent = "Play";
+                if (currentAudio) {
+                    currentAudio.pause();
+                    currentAudio.currentTime = 0;
+                }
+            }
+        }
+
+        function updateStatus(message) {
+            document.getElementById('status').innerText = message;
+            console.log(message);
+        }
+
+        function setDestination(lat, lon) {
+            // const lat = prompt("Enter destination latitude:");
+            // const lon = prompt("Enter destination longitude:");
+            // const alarm = prompt("Choose alarm sound: alarm, alarm2, alarm3, alarm4, alarm5, alarm6, alarm7, alarm8, alarm9");
+
+            // if (!lat || !lon || !alarm || isNaN(lat) || isNaN(lon)) {
+            //     alert("⚠️ Please enter valid latitude, longitude, and alarm name.");
+            //     return;
+            // }
+
+            // let newDestination = { lat: parseFloat(lat), lon: parseFloat(lon), alarm: `${alarm}.mp3`, favorite: false };
+            // destinations.push(newDestination);
+            // localStorage.setItem("destinations", JSON.stringify(destinations));
+            // renderDestinations();
+            // updateStatus(`✅ Destination Added: Lat ${lat}, Lon ${lon}, Alarm: ${alarm}`);
+
+
+            isAddingDestination = true;
+map.setOptions({ draggableCursor: "pointer" });
+alert("Click on the map to select your destination.");
+
+// Remove any previous event listener to avoid duplicate clicks
+google.maps.event.clearListeners(map, "click");
+
+// Listen for next click on the map
+map.addListener("click", (event) => {
+    if (!isAddingDestination) return;
+    isAddingDestination = false; // Disable further clicks
+
+    let lat = event.latLng.lat();
+    let lon = event.latLng.lng();
+
+    const alarm = prompt("Enter alarm sound file name (e.g., alarm1):");
+    if (!alarm) return; // Prevent empty input
+
+    let alarmFile = `${alarm}.mp3`; // Correct key name
+
+    let newDestination = { lat, lon, alarm: alarmFile, favorite: false };
+    destinations.push(newDestination);
+    localStorage.setItem("destinations", JSON.stringify(destinations));
+
+    new google.maps.Marker({
+        position: { lat, lng: lon },
+        map: map,
+        title: `Destination - Alarm: ${alarm}`
+    });
+
+    renderDestinations();
+    startTracking();
+
+    updateStatus(`✅ Destination Added: Lat ${lat}, Lon ${lon}, Alarm: ${alarmFile}`);
+});
+
+        }
+
+        function renderDestinations() {
+            const destContainer = document.getElementById("destinations");
+            destContainer.innerHTML = "";
+            destinations.sort((a, b) => b.favorite - a.favorite);
+
+            destinations.forEach((dest, index) => {
+                const cardClass = dest.favorite ? "destination-card favorite" : "destination-card";
+
+                destContainer.innerHTML += `
+                     <div id="destination-${index}" class="${cardClass}">
+                        <div class="destination-header">
+                            <span class="destination-title">📌 Destination ${index + 1}</span>
+                                                        <button class="star-btn" onclick="toggleFavorite(${index})">${dest.favorite ? '★' : '☆'}</button>
+
+                            <button class='btn btn-danger btn-sm delete-btn' onclick='deleteDestination(${index})'>🗑 Delete</button>
+                        </div>
+                        <div class="destination-details">
+                            <p>📍 Lat: <strong>${dest.lat}</strong>, Lon: <strong>${dest.lon}</strong></p>
+                            <p> જ⁀➴ Distance: <strong id="distance-${index}">${dest.distance}</strong></p>
+                           
+
+                        </div>
+                        
+                    </div>
+                     <br>
+                `;
+            });
+        }
+
+        function deleteDestination(index) {
+            destinations.splice(index, 1);
+            localStorage.setItem("destinations", JSON.stringify(destinations));
+            renderDestinations();
+            updateStatus("🚮 Destination Removed");
+        }
+
+        let alarms = [];
+
+        function toggleAlarm(index) {
+            const alarmSelect = document.getElementById(`audioSelect-${index}`);
+            const selectedAlarm = alarmSelect.value;
+            const playPauseBtn = document.querySelector(`#audioSelect-${index}`).nextElementSibling;
+
+            if (alarms[index]) {
+                alarms[index].pause();
+                alarms[index].currentTime = 0;
+                alarms[index] = null;
+                playPauseBtn.textContent = "Play";
+            } else {
+                let alarm = new Audio(selectedAlarm);
+                alarms[index] = alarm;
+                alarm.play().then(() => {
+                    console.log("🎶 Alarm is playing!");
+                    playPauseBtn.textContent = "Pause";
+                }).catch((err) => {
+                    console.log("🔇 Auto-play blocked:", err);
+                    alert("🔊 Click anywhere to enable alarm playback!");
+                    document.body.addEventListener("click", () => {
+                        alarm.play().then(() => console.log("🎶 Alarm played after user click!"));
+                    }, { once: true });
+                });
+            }
+        }
+
+        function changeAlarm(index) {
+            if (alarms[index]) {
+                alarms[index].pause();
+                alarms[index].currentTime = 0;
+            }
+            toggleAlarm(index);
+        }
+
+        function toggleFavorite(index) {
+    // Toggle the favorite status for the destination
+    const destination = destinations[index];
+    destination.favorite = !destination.favorite;
+
+    // Store the updated destinations in localStorage
+    localStorage.setItem("destinations", JSON.stringify(destinations));
+
+    // Render the destinations again
+    renderDestinations();
+
+    // Update the status message
+    updateStatus(destination.favorite ? "⭐ Marked as Favourite!" : "❌ Unmarked as Favourite!");
+
+    // Find the DOM element for the destination card
+    const destinationElement = document.querySelector(`#destination-${index}`);
+
+    // Apply golden background temporarily if it's marked as favorite
+   
+}
+
+        function playAlarm(soundFile) {
+            let alarm = new Audio(soundFile);
+            alarm.play().then(() => {
+                console.log("🎶 Alarm is playing!");
+                
+            }).catch((err) => {
+                console.log("🔇 Auto-play blocked:", err);
+                alert("🔊 Click anywhere to enable alarm playback!");
+
+                // Wait for user interaction to retry playing
+                document.body.addEventListener("click", () => {
+                    alarm.play().then(() => console.log("🎶 Alarm played after user click!"));
+                }, { once: true });
+            });
+        }
+
+        function startTracking() {
+            if ("geolocation" in navigator) {
+                navigator.geolocation.watchPosition(
+                    (position) => {
+                        let currentLat = position.coords.latitude;
+                        let currentLon = position.coords.longitude;
+                        document.getElementById("current-location").innerText = `📡 Current Location: Lat ${currentLat}, Lon ${currentLon}`;
+
+                        destinations.forEach((dest, index) => {
+                            let distance = getDistance(currentLat, currentLon, dest.lat, dest.lon);
+                            let distanceText = distance > 1000 ? `${(distance / 1000).toFixed(2)} km` : `${distance.toFixed(2)} m`;
+
+                            document.getElementById(`distance-${index}`).innerText = distanceText;
+                            destinations[index].distance = distanceText;
+                            updateStatus(`🚀 Destination ${index + 1}: ${distanceText} away`);
+
+                            if (distance < 50) {
+                                console.log("🚨 Destination reached! Trying to play alarm...");
+                                alert(`🎉 You have arrived at Destination ${index + 1}!`);
+                                console.log("Alarm to be played:", dest.alarm);
+                                playAlarm(dest.alarm);   // Play alarm function
+                                destinations.splice(index, 1);
+                                localStorage.setItem("destinations", JSON.stringify(destinations));
+                                renderDestinations();
+                            }
+                        });
+                    },
+                    (error) => updateStatus(`❌ Error: ${error.message}`),
+                    { enableHighAccuracy: true, maximumAge: 1000, timeout: 5000 }
+                );
+            } else {
+                updateStatus("⚠️ Geolocation is not supported by your browser.");
+            }
+        }
+
+        function getDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371e3;
+            const φ1 = (lat1 * Math.PI) / 180;
+            const φ2 = (lat2 * Math.PI) / 180;
+            const Δφ = ((lat2 - lat1) * Math.PI) / 180;
+            const Δλ = ((lon2 - lon1) * Math.PI) / 180;
+            const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+                Math.cos(φ1) * Math.cos(φ2) *
+                Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * c;
+        }
+
+        window.addEventListener("beforeinstallprompt", (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            document.getElementById("installBtn").style.display = "block";
+        });
+
+        document.getElementById("installBtn").addEventListener("click", () => {
+            if (!deferredPrompt) {
+                alert("📲 App installation is not available right now.");
+                return;
+            }
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === "accepted") {
+                    console.log("User installed the app");
+                }
+                deferredPrompt = null;
+            });
+            document.getElementById("installBtn").style.display = "none";
+        });
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js')
+                .then(() => console.log("✅ Service Worker Registered"))
+                .catch(err => console.log("❌ Service Worker Error:", err));
+        }
+
+        renderDestinations();
+        startTracking();
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDv7AV98HrkjkRFuBcY1qlfMtHViZK-jRA&callback=initMap"></script>
+
+</body>
+
+</html>
