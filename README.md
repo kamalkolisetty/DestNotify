@@ -83,5 +83,13 @@ You can deploy DestNotify using:
 📽️ _[https://drive.google.com/file/d/1RFpcO67O9RpdONRAH6tEXLWEfiSc31i7/view?usp=drivesdk]_  
 
 ## **🔗 Live Demo**
+
+### 1st deployed version
+🌍 _[[Link to deployed site](https://locationkamal1.netlify.app/)]_  
+
+### major changes to enhance UI/UX
 🌍 _[[Link to deployed site](https://destnotify-k3.netlify.app/)]_  
+
+### pre-alpha version( latest)
+🌍 _[[Link to deployed site](https://destnotify-prealpha.netlify.app/)]_  
 
