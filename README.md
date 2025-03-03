@@ -70,13 +70,10 @@ DestNotify can be deployed on:
 |---------|------|
 | **First Deployed Version** | 🌍 [_The Beginning_](https://locationkamal1.netlify.app/) |
 | **Major UI/UX Enhancements** | 🌍 [_Pre-Pre-ALPHA_](https://destnotify-k3.netlify.app/) |
-| **Latest Pre-Alpha Version** | 🌍 [_LATEST_](https://destnotify-prealpha.netlify.app/) |
+| **Pre-Alpha Version** | 🌍 [_LATEST_](https://destnotify-prealpha.netlify.app/) |
 
 ---
 
-## **🎥 Demo Video**
-📽️ Watch a walkthrough of DestNotify:  
-🔗 [Demo Video](https://drive.google.com/file/d/1RFpcO67O9RpdONRAH6tEXLWEfiSc31i7/view?usp=drivesdk)  
 
 ---
 
