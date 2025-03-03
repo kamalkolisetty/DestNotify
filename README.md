@@ -85,11 +85,11 @@ You can deploy DestNotify using:
 ## **🔗 Live Demo**
 
 ### 1st deployed version
-🌍 _[[Link to deployed site](https://locationkamal1.netlify.app/)]_  
+🌍 _[[THE BeginING](https://locationkamal1.netlify.app/)]_  
 
 ### major changes to enhance UI/UX
-🌍 _[[Link to deployed site](https://destnotify-k3.netlify.app/)]_  
+🌍 _[[pre-pre-ALPHA](https://destnotify-k3.netlify.app/)]_  
 
 ### pre-alpha version( latest)
-🌍 _[[Link to deployed site](https://destnotify-prealpha.netlify.app/)]_  
+🌍 _[[LATEST](https://destnotify-prealpha.netlify.app/)]_  
 
