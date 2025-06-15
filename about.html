@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | DestNotify</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
     <style>
         body {
-            background-color: #000;
+            background-color: #121212;
             color: #fff;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 0.7px;
         }
+
         .container {
             max-width: 900px;
             margin: 50px auto;
+            padding: 20px;
         }
+
         .app-logo {
             width: 100%;
             max-width: 350px;
@@ -21,84 +31,270 @@
             display: block;
             margin: 20px auto;
             border-radius: 10px;
+            cursor: pointer;
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
+        .app-logo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 1);
+        }
+
         .btn-custom {
             background-color: #ff4081;
             border: none;
             color: white;
             padding: 10px 20px;
             font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
         }
+
         .btn-custom:hover {
             background-color: #e60073;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 64, 129, 0.7);
         }
+
         .tagline {
             font-size: 20px;
             font-weight: bold;
             color: #ffcc00;
-            margin-left: 20px;
+            margin-left: 10px;
             margin-top: 10px;
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
         }
+
+        h2 {
+            margin-top: 30px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        li {
+            padding: 10px 0;
+            transition: transform 0.2s ease, color 0.2s ease, background 0.3s ease;
+            border-radius: 8px;
+        }
+
+        li:hover {
+            transform: translateX(10px);
+            color: #ffcc00;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .highlight {
+            background: linear-gradient(90deg, #ff4081, #ffcc00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+        .video-preview {
+    width: 96%;
+    max-width: 400px;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    border-radius: 12px;
+    cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-preview:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(255, 64, 129, 1);
+}
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px auto;
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.3rem;
+            }
+
+            .app-logo {
+                max-width: 250px;
+            }
+
+            .btn-custom {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            .tagline {
+                font-size: 16px;
+            }
+
+            li {
+                padding: 10px 5px;
+            }
+
+            .feature-card {
+                padding: 10px;
+            }
+        }
+        .animate-on-load {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        .name-link {
+    color: #fff;
+    text-decoration: none;
+    transition: background 0.3s ease, -webkit-background-clip 0.3s ease, -webkit-text-fill-color 0.3s ease;
+}
+
+.name-link:hover {
+    background: linear-gradient(90deg, #ff4081, #ffcc00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+}
     </style>
 </head>
+
 <body>
 
     <div class="container">
         <h1 class="mb-2">📍 About <span class="text-warning">DestNotify</span></h1>
-<br>
-        <h2 class="text-info">Our Mission</h2>
+        <br>
+        <h2 style="font-weight: 700; background-image: linear-gradient(-225deg, #FF057C 0%, #8D0B93 50%, #321575 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;" class="text">Our Mission</h2>
         <p>
-            Have you ever missed your stop because you were busy on your phone, listening to music, or even sleeping?  
-            DestNotify makes sure that never happens again by alerting you at the right time.
+            Ever missed your stop because you were lost in your phone, jamming to tunes, or snoozing? 
+            DestNotify’s here to save the day with timely alerts so you never overshoot again! 🚀 
+            We’re all about making your travels smarter, smoother, and way more fun!
         </p>
 
-        <h2 class="text-danger">Problems We Faced</h2>
+        <h2 style="font-weight: 700; background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;" class="text">Problems We Faced</h2>
         <ul>
-            <li>Missed stops due to distractions.</li>
-            <li>No alerts while listening to music or podcasts.</li>
-            <li>Falling asleep during travel and waking up too far away.</li>
-            <li>No option to save frequently visited destinations.</li>
+            <li class="animate-on-load">📱 <span class="highlight">Distractions</span> leading to missed stops 😣</li>
+            <li class="animate-on-load">🎧 No audible cues over music 😫</li>
+            <li class="animate-on-load">💤 Oversleeping past destinations 😴</li>
+            <li class="animate-on-load">🍽️ Craving local eats but no ideas 😋</li>
+            <li class="animate-on-load">🌧️ Weather surprises ruining plans 😰</li>
         </ul>
 
-        <img src="x2.png" alt="DestNotify App" class="app-logo">
+        <!-- <img src="x2.png" alt="DestNotify App" class="app-logo"> -->
 
-        <h2 class="text-success">How DestNotify Solves This</h2>
-        
+        <h2 style="font-weight: 700; background: linear-gradient(120deg, #f093fb 0%, #f5576c 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">How DestNotify Solves This</h2>
         <ul>
-            <li>🔔 Smart location-based alerts to notify you before your stop.</li>
-            <li>🎵 Custom audio alarms so you can choose your favorite sound.</li>
-            <li>⭐ Favorite destinations for quick access.</li>
-            <li>📡 Real-time GPS tracking for accurate alerts.</li>
-            <li>🧠 Auto-Learning System – Frequently visited places are automatically saved to favorites!</li>
+            <li class="feature-card">🔔 <span class="highlight">Smart Alerts</span> - GPS-powered pings before your stop, with custom proximity settings (10m to infinity!). Never miss your spot again! 🌍</li>
+           <li class="feature-card">📳 <span class="highlight">Vibration Alerts</span> - Feel the buzz when you’re near your stop, even with your phone in your pocket or music blasting! 🚀</li>
+            <li class="feature-card">🪗 <span class="highlight">Custom Alarms</span> - Pick from 9 funky sounds to wake you up, loud enough to cut through your jams! 🎶</li>
+            <li class="feature-card">⭐ <span class="highlight">Favorites</span> - Save your go-to spots (home, work, café) with a tap—or let auto-learning do the magic! ✨</li>
+            <li class="feature-card">📡 <span class="highlight">Real-Time Tracking</span> - Pinpoint GPS keeps you locked on, with live distance updates to your destinations! 🗺️</li>
+            <li class="feature-card">🧠 <span class="highlight">Auto-Learning</span> - Frequent haunts get added to favorites automatically—no effort, all smarts! 🧠</li>
+            <li class="feature-card">🌤️ <span class="highlight">Weather Updates</span> - Live forecasts with travel tips (e.g., “Bring an umbrella!”) for your spots—stay prepared! ☀️🌧️</li>
+            <li class="feature-card">🍛 <span class="highlight">Famous Foods</span> - Discover the top 5 local dishes near you or your favorites with one click—foodie heaven awaits! 😋</li>
+            <li class="feature-card">🤖 <span class="highlight">DestiNotiX Bot</span> - Chat about destinations, food, weather, or random fun with our AI buddy—your travel BFF! 💬</li>
+            <li class="feature-card">📩 <span class="highlight">Email Alerts</span> - Get notified via email when you arrive, coords included—share your journey! 📧</li>
+            <li class="feature-card">🎉 <span class="highlight">Party Mode</span> - Celebrate arrivals with emoji explosions and vibes—because you deserve it! 🥳✨</li>
+            <li class="feature-card">📲 <span class="highlight">PWA Ready</span> - Install it as an app for offline access and seamless use—travel anywhere, anytime! 📱</li>
+            <!-- New Features Added -->
+                 <li class="feature-card">💾 <span class="highlight">Smart Caching</span> - Stores your location data for faster tracking, even with spotty internet—stay on course! 🌐</li>
+
+            <li class="feature-card">📰 <span class="highlight">Local News</span> - Stay in the loop with breaking news near your location or destinations—know what’s buzzing! 🌐</li>
+            <li class="feature-card">🎬 <span class="highlight">Movie Mood</span> - Get movie picks based on the weather—rainy day rom-coms or sunny adventure flicks, anyone? 🍿</li>
+            <li class="feature-card">🎉 <span class="highlight">Holidays</span> - Check upcoming holidays near you—plan your next getaway or just vibe with the festivities! 🗓️</li>
         </ul>
+        <h2 style="font-weight: 700; background: linear-gradient(120deg, #a18cd1 0%, #fbc2eb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">See It in Action!</h2>
+<a href="https://drive.google.com/file/d/10_HcPMDI9VcuMdL4cDsVXNYHlczza_af/view?usp=drivesdk" target="_blank">
+    <img src="x2.png" alt="DestNotify Demo Video" class="video-preview">
+</a>
+<p style="text-align: center; color: #ddd;">Click the image to watch our demo video and vibe with DestNotify! 🎥✨</p>
 
-
-        <h2 class="text-warning">📌 Smart Auto-Learning Feature</h2>
+        <h2 style="font-weight: 600; background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Smart Auto-Learning Feature</h2>
         <p>
-            Tired of manually adding your favorite locations? Our Auto-Learning System keeps track of your most visited destinations and automatically adds them to your favorites. 
-            Whether it’s your office, home, or a frequently visited coffee shop, DestNotify ensures they are always just a tap away.
+            Tired of adding locations by hand? Our <strong>Auto-Learning System</strong> tracks your regular stops—like that cozy café or your office—and adds them to favorites. Toggle it on/off anytime for a personalized vibe! 🌟
         </p>
-        <p>🌟 No need to manually save locations! The app learns and remembers your favorites.</p>
+        <p>✨ No manual saves needed—the app learns your rhythm and rolls with it!</p>
 
-        <h2 class="text-primary">Our Goal</h2>
-        <p class="tagline  ">✨ Alerts That Move With You! ✨</p>
-
+        <h2 style="font-weight: 700; background-image: linear-gradient(to top, #0fd850 0%, #f9f047 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;" class="text">Meet Our Destination Bot</h2>
         <p>
-
-            We want to make traveling stress-free and efficient.  
-            No more panic, no more missed stops – just smooth and smart travel.
+            Say hi to <strong>DestiNotiX</strong> 🤖—your chatty travel companion! It kicks off with destination ideas, then dives into food, weather, movies, or even silly banter. Hit the reset button for a fresh chat anytime! 😍
         </p>
 
-        <a href="index.html" class="btn btn-custom mt-3">⬅️ Go Back</a>
-
+        <h2 style="font-weight: 700; background-image: linear-gradient(to top, #e8198b 0%, #c7eafd 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;" class="text">Our Goal</h2>
+        <p class="tagline">✨ Alerts That Move With You! ✨</p>
+        <p>
+            We’re here to make travel chill, smart, and packed with goodies. No stress, no missed stops—just smooth rides, tasty bites, and fun chats! 🚗💬
+        </p>
+<h2 style="font-weight: 700; background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Why DestNotify?</h2>
+<p class="animate-on-load">Because travel should be <span class="highlight">fun, not fussy</span>! We’re your pocket-sized travel BFF, packed with smarts and sass to keep you on track. Here’s why we’re the vibe:</p>
+<ul>
+    <li class="feature-card animate-on-load">🚀 <span class="highlight">Effortless</span> - Set it, forget it, and get pinged right on time. No babysitting needed!</li>
+    <li class="feature-card animate-on-load">😎 <span class="highlight">Personalized</span> - From fave spots to food recs, we tailor it to <strong>you</strong> .</li>
+    <li class="feature-card animate-on-load">🎉 <span class="highlight">Playful</span> - Emoji explosions, cheeky bot chats, and party mode—travel’s a blast!</li>
+    <li class="feature-card animate-on-load">🌍 <span class="highlight">All-in-One</span> - Weather, news, movies, holidays, and more, all in one app!</li>
+    <li class="feature-card animate-on-load">📳 <span class="highlight">Tactile Vibes</span> - Vibration alerts keep you in the loop without looking—perfect for jams or naps! 😎</li>
+</ul>
+<h2 style="font-weight: 700; background: linear-gradient(120deg, #ff9a8b 0%, #ff6a88 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Our Craft</h2>
+<p class="animate-on-load">We’re obsessed with making DestNotify <span class="highlight">flawless</span>! From buzzing vibrations to snappy emails, we’ve tested it all—on phones, browsers, and even in nap mode—to ensure you get a <span class="highlight">smooth ride</span> every time. 🚀</p>
+<ul>
+    <li class="feature-card animate-on-load">🧪 <span class="highlight">Rigorous Testing</span> - Alerts, vibes, and chats work like magic, no matter your device! 📱</li>
+     <li class="feature-card animate-on-load">🌟 <span class="highlight">User Love</span> - Every feature’s tweaked to keep your travel stress-free and fun! 😎</li>
+</ul>
+         <h1 style="font-weight: 700; background-image: linear-gradient(to right, #00dbde 0%, #fc00ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;" class="animate-on-load">Meet the Crew</h1>
+        <div class="row text-left animate-on-load">
+            <div class="col">
+                <h5><a href="https://www.linkedin.com/in/kamal-kumar-kolisetty-19b944221/" target="_blank" class="name-link">Kamal Kumar Kolisetty</a></h5>
+                <p>Creator & Dreamer 🚀<br>Built DestNotify with ❤️ to make your travel smarter and sassier!</p>
+            </div>
+        </div>
+            <!-- Add more team members as needed -->
+           
+        <a href="index.html" style="background-image: linear-gradient(to right, #43e97b 0%, #38f9d7 100%); font-weight: 500; color: black;" class="btn btn-custom mt-3">⬅️ Back to Adventure</a>
         <footer class="d-lg-block text-center text-white py-2 mt-4">
-            <!-- |         <span class="tagline">✨ Alerts That Move With You! ✨</span> -->
-            <h5 class="mb-0">©KWorks 
-            </h5>
+            <h5 class="mb-0">©KWorks | Crafted with ✨ & ☕</h5>
         </footer>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        (function () {
+            emailjs.init("0jU8-GLncwXyPHu3l"); // Your EmailJS Public Key
+        })();
+    
+        document.getElementById("contactForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const templateParams = {
+                from_name: document.getElementById("contactName").value,
+                from_email: document.getElementById("contactEmail").value,
+                message: document.getElementById("contactMessage").value
+            };
+            emailjs.send("service_9oyj0bm", "destnotify_contact", templateParams)
+                .then(() => {
+                    alert("Message sent! We’ll get back to you soon! 😍");
+                    document.getElementById("contactForm").reset();
+                })
+                .catch((error) => {
+                    alert("Oops! Something went wrong. Try again later! 😿");
+                    console.error("EmailJS error:", error);
+                });
+        });
+    </script>    
 </body>
+
 </html>
