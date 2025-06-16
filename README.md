@@ -5,8 +5,9 @@ Welcome to **DestNotify**, a **feature-packed Progressive Web App (PWA)** crafte
 
 [![TRY DESTNOTIFY NOW](https://img.shields.io/badge/TRY_DESTNOTIFY_NOW-FF6B6B?style=for-the-badge&logo=netlify&logoColor=white)](https://destnotify-prod-v2.netlify.app/)  
 
-📹 **[![](x2.png)](https://drive.google.com/file/d/10_HcPMDI9VcuMdL4cDsVXNYHlczza_af/view?usp=drivesdk){:target="_blank"}**
+## 📹 Demo Video
 
+ [<img src="/x2.png" alt="Demo Video" width="300">](https://drive.google.com/file/d/10_HcPMDI9VcuMdL4cDsVXNYHlczza_af/view?usp=drivesdk){:target="_blank"}
 
 ---
 
