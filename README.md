@@ -5,8 +5,9 @@ Welcome to **DestNotify**, a **feature-packed Progressive Web App (PWA)** crafte
 
 
 [![🚀 Launch App](https://img.shields.io/badge/LAUNCH_APP-FF6B6B?style=for-the-badge&logo=netlify&logoColor=white&labelColor=101010)](https://destnotify-prod-v2.netlify.app/)
-
+---
 📹 [<img src="/x2.png" alt="Demo Video" width="400">](https://drive.google.com/file/d/10_HcPMDI9VcuMdL4cDsVXNYHlczza_af/view?usp=drivesdk) 
+---
 ✨ **"Don’t just scroll—explore! Your next adventure starts with one click."** ✨  
 
 
@@ -413,7 +414,7 @@ DestNotify evolved through relentless iteration, with each version introducing g
 
 DestNotify’s UI is a treat for the eyes! 📷
 - **Home Screen with Map**:
-- ![](/images/1.jpg)
+ ![](/images/1.jpg){: width="300"}
   
 - **About page**:
 - ![](/images/2.jpg)
@@ -431,13 +432,13 @@ DestNotify’s UI is a treat for the eyes! 📷
 - ![](/images/6.jpg)
 - 
 - **Email Content**:
-- ![](/images/7.jpg)
+ ![](/images/7.jpg)
 - 
 - **Favoriting a destination**: 
-- ![](/images/8.jpg)
+ ![](/images/8.jpg)
 
 - **Famous Foods at Favorite destination**:
-- ![](/images/9.jpg)
+ ![](/images/9.jpg)
 - 
 -  **Local News Feature**:
 - ![](/images/10.jpg)
@@ -446,7 +447,7 @@ DestNotify’s UI is a treat for the eyes! 📷
 - ![](/images/11.jpg)
 - 
 -  **Holidays Feature**:
-- ![](/images/15.jpg)
+- ![](/15.jpg)
 -  
 -  **DestnotiX - inhouse BOT**:
 - ![](/images/12.jpg)
