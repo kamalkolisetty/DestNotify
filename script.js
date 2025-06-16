@@ -1434,26 +1434,48 @@ function toggleFavorite(name) {
 
 
 function playAlarm(soundFile) {
-    let alarm = new Audio(soundFile);
-    alarm.play().then(() => {
-        console.log("🎶 Alarm is playing!");
-        if ('vibrate' in navigator) {
-            console.log("📳 Vibrating phone...");
-            // Repeat pattern 3 times for emphasis
-            navigator.vibrate([500, 200, 500, 200, 500, 200, 500]);
-        }
-    }).catch((err) => {
-        console.log("🔇 Auto-play blocked:", err);
-        alert("🔊 Click anywhere to enable alarm playback!");
-        document.body.addEventListener("click", () => {
-            alarm.play().then(() => {
-                if ('vibrate' in navigator) {
-                    navigator.vibrate([500, 200, 500, 200, 500, 200, 500]);
-                }
-            });
-        }, { once: true });
-    });
+  let alarm = new Audio(soundFile);
+  alarm.play().then(() => {
+    console.log('🎶 Alarm is playing!');
+    // Attempt vibration
+    if ('vibrate' in navigator) {
+      const success = navigator.vibrate([500, 200, 500, 200, 500, 200, 500]);
+      if (success) {
+        console.log('📳 Vibration triggered successfully');
+      } else {
+        console.warn('⚠️ Vibration failed or not supported');
+        showToast('📳 Vibration not supported on this device');
+      }
+    } else {
+      console.warn('⚠️ Vibration API not supported');
+      showToast('📳 Vibration not supported on this device');
+    }
+  }).catch((err) => {
+    console.log('🔇 Auto-play blocked:', err);
+    // alert('🔊 Click anywhere to enable alarm playback!');
+    document.body.addEventListener(
+      'click',
+      () => {
+        alarm.play().then(() => {
+          console.log('🎶 Alarm played after user click!');
+          if ('vibrate' in navigator) {
+            const success = navigator.vibrate([500, 200, 500, 200, 500, 200, 500]);
+            if (success) {
+              console.log('📳 Vibration triggered after click');
+            } else {
+              console.warn('⚠️ Vibration failed after click');
+              showToast('📳 Vibration not supported on this device');
+            }
+          }
+        });
+      },
+      { once: true }
+    );
+  });
 }
+
+
+
 
 async function getWeatherForDestination(lat, lon) {
     try {
@@ -1669,6 +1691,7 @@ If you don’t know, provide:
 2. If no nearby city is known, give the top 5 famous foods of ${placeName}'s state.
 3. If you don’t know the state, provide the top 5 famous foods of ${placeName}'s country.
 4. If you don’t know the country, provide top 5 famous foods globally.
+5. If you didn't got proper place name give top 5 famous foods of India with each state one food.
 
 `;
     try {
@@ -2072,6 +2095,7 @@ function sendArrivalEmail(destinationName, latitude, longitude) {
     let userName = localStorage.getItem("userName") || "Shraddha"; // Default if not set
     console.log(`📬 Sending push notification for: ${destinationName}`);
 
+    // ✅ Keep existing service worker/push notification logic
     if ("serviceWorker" in navigator && "PushManager" in window) {
         navigator.serviceWorker.ready.then((registration) => {
             registration.showNotification("🎉 Destination Reached!", {
@@ -2079,7 +2103,7 @@ function sendArrivalEmail(destinationName, latitude, longitude) {
                 icon: "favicon.ico",
                 badge: "favicon.ico",
                 vibrate: [500, 200, 500, 200, 500],
-                sound: "alarm1.mp3", // Use a default alarm or destination-specific sound
+                sound: "alarm1.mp3",
                 data: { destinationName, latitude, longitude },
                 actions: [
                     { action: "open-app", title: "Open DestNotify" },
@@ -2095,6 +2119,8 @@ function sendArrivalEmail(destinationName, latitude, longitude) {
         console.warn("⚠️ Push notifications not supported.");
         showToast(`🎉 ${destinationName} reached! (Notifications not supported)`);
     }
+
+    // Early return if no email (keep existing behavior)
     if (!userEmail) {
         console.error("❌ No email found! Skipping email notification.");
         return;
@@ -2106,18 +2132,19 @@ function sendArrivalEmail(destinationName, latitude, longitude) {
         to_name: userName,
         to_email: userEmail,
         destination_name: destinationName,
-        latitude: latitude,   // Include latitude
-        longitude: longitude  // Include longitude
+        latitude: latitude,
+        longitude: longitude
     };
 
+    // ✅ Keep EmailJS logic, just add a cute toast on failure
     emailjs.send("service_9oyj0bm", "destnotify_kamal", templateParams)
         .then(function (response) {
             console.log("✅ Email Sent Successfully!", response);
-            alert("📩 Arrival email sent successfully!");
+            alert("📩 Arrival email sent successfully!"); // Kept as-is (you can replace with toast if preferred)
         })
         .catch(function (error) {
             console.error("❌ Failed to send email:", error);
-
+            showToast("📧 Email service is not available at the moment. Try again later! 🐾"); // Cute toast added
         });
 }
 
@@ -2156,11 +2183,17 @@ let hasPrompted = false; // In-memory flag to prevent multiple prompts in the sa
 document.addEventListener("DOMContentLoaded", async () => {
     console.log("📄 DOM Content Loaded, initializing...");
 
+    // Hide UI until details are provided
+    const appContainer = document.getElementById("app-container"); // Replace with your main container ID
+    if (appContainer) {
+        appContainer.style.display = "none";
+    }
+
     // Load cached location if available
     const cachedLocation = localStorage.getItem("userLocationCache");
     if (cachedLocation) {
         userLocationCache = JSON.parse(cachedLocation);
-        if (Date.now() - userLocationCache.lastUpdated < 3600000) { // 1 hour cache validity
+        if (Date.now() - userLocationCache.lastUpdated < 3600000) {
             console.log("✅ Loaded cached location:", userLocationCache);
         } else {
             console.log("🕒 Cached location expired, fetching new location...");
@@ -2170,64 +2203,90 @@ document.addEventListener("DOMContentLoaded", async () => {
         await getUserLocation();
     }
 
-    // Check if prompt has already been shown (persistent flag)
+    // Check if prompt has already been shown
     const promptShown = localStorage.getItem("promptShown") === "true";
-
-    // Check for userName and userEmail
     let userName = localStorage.getItem("userName");
     let userEmail = localStorage.getItem("userEmail");
 
-    // Only prompt if not already shown and name/email are missing/invalid
-    if (!promptShown && (!userName || !userEmail || userName.trim() === "" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userEmail)) && !hasPrompted) {
-        hasPrompted = true; // Set in-memory flag to prevent re-prompting
-
-        setTimeout(() => {
-            // Prompt for name
-            let attempts = 3;
-            while (!userName && attempts > 0) {
-                userName = prompt(`Hey there! What's your name? 😊 (${attempts} attempts left)`);
-                attempts--;
-            }
-            if (!userName) {
-                userName = "Guest";
-            }
-
-            // Prompt for email with basic validation
-            attempts = 3;
-            while (!userEmail && attempts > 0) {
-                userEmail = prompt(`Please enter your email (for notifications). 📩 (${attempts} attempts left)`);
-                if (userEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userEmail)) {
-                    userEmail = null;
-                    alert("Please enter a valid email (e.g., you@example.com).");
-                }
-                attempts--;
-            }
-            if (!userEmail) {
-                userEmail = "guest@destnotify.com"; // Fallback email
-            }
-
-            // Save to localStorage
-            localStorage.setItem("userName", userName.trim());
-            localStorage.setItem("userEmail", userEmail.trim());
-            localStorage.setItem("promptShown", "true"); // Set persistent flag
-
-            // Set welcome message
-            document.getElementById("welcome-message").innerText = `Welcome, ${userName.trim()}! 😊`;
-
-            alert(`Welcome, ${userName}! 🎉 You're all set.`);
-        }, 1500);
+    // Prompt if details are missing or invalid
+    if (!promptShown || !userName || !userEmail || userName.trim() === "" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userEmail)) {
+        if (!hasPrompted) {
+            hasPrompted = true;
+            await promptForUserDetails();
+        }
     } else {
-                document.getElementById("welcome-message").innerText = `Welcome, ${userName ? userName.trim() : 'Guest'}! 😊`;
-
+        document.getElementById("welcome-message").innerText = `Welcome, ${userName.trim()}! 😊`;
         console.log(`✅ User info already set: ${userName}, ${userEmail}`);
     }
-    
+
+    // Show UI after details are provided
+    if (appContainer) {
+        appContainer.style.display = "block";
+    }
+
     // Attach reset button event listener
     const resetBtn = document.getElementById("reset-user-btn");
     if (resetBtn) {
         resetBtn.addEventListener("click", resetUser);
     }
 });
+
+async function promptForUserDetails() {
+    setTimeout(() => {
+        let userName = null;
+        let userEmail = null;
+
+        while (!userName || userName.trim() === "") {
+            userName = prompt("Hey there! What's your name? 😊 (Required)");
+            if (userName === null) {
+                alert("Please provide your name to continue using the app. 🙏");
+            } else if (userName.trim() === "") {
+                alert("Name cannot be empty. Please enter a valid name. 😊");
+            }
+        }
+
+        while (!userEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userEmail)) {
+            userEmail = prompt("Please enter your email (for notifications). 📩 (Required)");
+            if (userEmail === null) {
+                alert("Please provide a valid email to continue using the app. 🙏");
+            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userEmail)) {
+                alert("Please enter a valid email (e.g., you@example.com). 📧");
+            }
+        }
+
+        userName = userName.trim();
+        userEmail = userEmail.trim();
+        localStorage.setItem("userName", userName);
+        localStorage.setItem("userEmail", userEmail);
+        localStorage.setItem("promptShown", "true");
+
+        document.getElementById("welcome-message").innerText = `Welcome, ${userName}! 😊`;
+        alert(`Welcome, ${userName}! 🎉 You're all set.`);
+    }, 1500);
+}
+
+function resetUser() {
+    localStorage.removeItem("userName");
+    localStorage.removeItem("userEmail");
+    localStorage.removeItem("promptShown");
+    console.log("🗑 User details reset.");
+
+    // Hide UI again
+    const appContainer = document.getElementById("app-container");
+    if (appContainer) {
+        appContainer.style.display = "none";
+    }
+
+    if (typeof showToast === "function") {
+        showToast("Your details have been deleted successfully! Please add new details.");
+    }
+    alert("Your details have been deleted successfully. Please proceed to add new details to continue. 🙌");
+
+    hasPrompted = false;
+    promptForUserDetails();
+}
+
+
 
  
 async function getStateAndCountryCode(lat, lon) {
@@ -2317,25 +2376,48 @@ window.addEventListener("beforeinstallprompt", (e) => {
     deferredPrompt = e;
     document.getElementById("installBtn").style.display = "block";
 });
-navigator.serviceWorker.addEventListener("message", (event) => {
-    if (event.data && event.data.type === "play-alarm") {
-        console.log("🔔 Playing alarm sound...");
+ 
 
-        let alarm = new Audio(event.data.alarm);
-        alarm.play().catch((err) => {
-            console.log("🔇 Auto-play blocked:", err);
-            alert("🔊 Tap anywhere to enable alarm playback!");
 
-            document.body.addEventListener("click", () => {
-                alarm.play();
-            }, { once: true });
-        });
+navigator.serviceWorker.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'play-alarm') {
+    console.log('🔔 Playing alarm sound from service worker message...');
+    let alarm = new Audio(event.data.alarm);
+    alarm.play().catch((err) => {
+      console.log('🔇 Auto-play blocked:', err);
+      alert('🔊 Tap anywhere to enable alarm playback!');
+      document.body.addEventListener(
+        'click',
+        () => {
+          alarm.play().then(() => console.log('🎶 Alarm played after user click!'));
+          if (event.data.vibrate && 'vibrate' in navigator) {
+            const success = navigator.vibrate([500, 200, 500, 200, 500, 200, 500]);
+            if (success) {
+              console.log('📳 Vibration triggered from notification click');
+            } else {
+              console.warn('⚠️ Vibration failed from notification click');
+              showToast('📳 Vibration not supported on this device');
+            }
+          }
+        },
+        { once: true }
+      );
+    });
 
-        // 📳 Trigger vibration
-        if (navigator.vibrate) {
-            navigator.vibrate([500, 200, 500]);
-        }
+    // Attempt vibration if requested
+    if (event.data.vibrate && 'vibrate' in navigator) {
+      const success = navigator.vibrate([500, 200, 500, 200, 500, 200, 500]);
+      if (success) {
+        console.log('📳 Vibration triggered from service worker message');
+      } else {
+        console.warn('⚠️ Vibration failed from service worker message');
+        showToast('📳 Vibration not supported on this device');
+      }
+    } else if (!('vibrate' in navigator)) {
+      console.warn('⚠️ Vibration API not supported');
+      showToast('📳 Vibration not supported on this device');
     }
+  }
 });
 
 
