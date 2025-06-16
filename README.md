@@ -3,6 +3,11 @@
 📍 **Never Miss a Stop, Never Miss the Vibe!**  
 Welcome to **DestNotify**, a **feature-packed Progressive Web App (PWA)** crafted with passion   to redefine how you travel. Imagine a world where you never overshoot your bus stop, get lost in a new city, or miss out on the best local eats. DestNotify delivers **smart location-based alarms**, **real-time distance tracking**, and a treasure chest of personalized goodies—think **weather-based travel tips**, **mouthwatering food suggestions**, **movie picks with trailers**, **local news**, **holiday insights**, and a **witty AI chatbot** named DestiNotiX. When you arrive, expect **vibrations**, **custom alarms**, **push notifications**, and **party explosions** to celebrate your journey. This isn’t just an app—it’s your **all-in-one travel BFF**, keeping you informed, entertained, and right on track! 🎉
 
+[![TRY DESTNOTIFY NOW](https://img.shields.io/badge/TRY_DESTNOTIFY_NOW-FF6B6B?style=for-the-badge&logo=netlify&logoColor=white)](https://destnotify-prod-v2.netlify.app/)  
+
+📹 **[!x2.png](https://drive.google.com/file/d/10_HcPMDI9VcuMdL4cDsVXNYHlczza_af/view?usp=drivesdk)**
+
+
 ---
 
 ## 🌟 Why I Built DestNotify
@@ -25,7 +30,7 @@ DestNotify is a powerhouse of features, each designed to make your travels effor
   Drop a pin on an interactive Google Maps canvas and customize your journey:
   - **Precise Coordinates**: Latitude and longitude for pinpoint accuracy.
   - **Destination Name**: Auto-filled using Google Maps’ reverse geocoding or set manually for personal flair (e.g., “My Favorite Café”).
-  - **Alarm Sound**: Pick from 9 quirky preloaded tracks (think funky beats like `alarm1.mp3`) or upload your own jam.
+  - **Alarm Sound**: Pick from 9 quirky preloaded tracks (think funky beats like `alarm1.mp3`) .
   - **Proximity Range**: Tweak the alert radius from 10m to 500m with a sleek slider, perfect for tight city streets or sprawling campuses. 🗺️
 
 - **🔔 Smart Alarms That Never Let You Down**  
