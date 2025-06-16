@@ -3,11 +3,17 @@
 📍 **Never Miss a Stop, Never Miss the Vibe!**  
 Welcome to **DestNotify**, a **feature-packed Progressive Web App (PWA)** crafted with passion   to redefine how you travel. Imagine a world where you never overshoot your bus stop, get lost in a new city, or miss out on the best local eats. DestNotify delivers **smart location-based alarms**, **real-time distance tracking**, and a treasure chest of personalized goodies—think **weather-based travel tips**, **mouthwatering food suggestions**, **movie picks with trailers**, **local news**, **holiday insights**, and a **witty AI chatbot** named DestiNotiX. When you arrive, expect **vibrations**, **custom alarms**, **push notifications**, and **party explosions** to celebrate your journey. This isn’t just an app—it’s your **all-in-one travel BFF**, keeping you informed, entertained, and right on track! 🎉
 
-[![TRY DESTNOTIFY NOW](https://img.shields.io/badge/TRY_DESTNOTIFY_NOW-FF6B6B?style=for-the-badge&logo=netlify&logoColor=white)](https://destnotify-prod-v2.netlify.app/)  
 
-## 📹 Demo Video
 
- [<img src="/x2.png" alt="Demo Video" width="300">](https://drive.google.com/file/d/10_HcPMDI9VcuMdL4cDsVXNYHlczza_af/view?usp=drivesdk){:target="_blank"}
+<div align="center">
+
+[![🚀 Launch App](https://img.shields.io/badge/LAUNCH_APP-FF6B6B?style=for-the-badge&logo=netlify&logoColor=white&labelColor=101010)](https://destnotify-prod-v2.netlify.app/){:target="_blank"}  
+[![🎥 Watch Demo](https://img.shields.io/badge/WATCH_DEMO-9146FF?style=for-the-badge&logo=youtube&logoColor=white)](https://drive.google.com/file/d/10_HcPMDI9VcuMdL4cDsVXNYHlczza_af/view){:target="_blank"}  
+
+<img src="https://user-images.githubusercontent.com/26399680/267596488-5f9f0a9e-3c3e-4e6c-ba8e-9a1d3a8e0b6f.gif" width="400" alt="DestNotify Demo">  
+
+✨ **"Don’t just scroll—explore! Your next adventure starts with one click."** ✨  
+</div>
 
 ---
 
