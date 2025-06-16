@@ -6,7 +6,11 @@ Welcome to **DestNotify**, a **feature-packed Progressive Web App (PWA)** crafte
 
 [![🚀 Launch App](https://img.shields.io/badge/LAUNCH_APP-FF6B6B?style=for-the-badge&logo=netlify&logoColor=white&labelColor=101010)](https://destnotify-prod-v2.netlify.app/)
 ---
-📹 [<img src="/x2.png" alt="Demo Video" width="400">](https://drive.google.com/file/d/10_HcPMDI9VcuMdL4cDsVXNYHlczza_af/view?usp=drivesdk) 
+
+### Demo Video
+
+[<img src="/x2.png" alt="Demo Video" width="400">](https://drive.google.com/file/d/10_HcPMDI9VcuMdL4cDsVXNYHlczza_af/view?usp=drivesdk) 
+
 ---
 ✨ **"Don’t just scroll—explore! Your next adventure starts with one click."** ✨  
 
@@ -337,13 +341,7 @@ DestNotify’s APIs are the heart of its rich experience. Here’s how I wove th
   - **Fallback**: Console logs and toast notifications for errors.
 
 ---
-
-## 🚀 Try DestNotify Now!
-
-Jump into the adventure! 🌐
-
-- **Live App**: 🌍 [DestNotify Production](https://destnotify-prod.netlify.app/)
-- **Demo Video**: 📹 [Watch the Demo](https://drive.google.com/file/d/10_HcPMDI9VcuMdL4cDsVXNYHlczza_af/view?usp=drivesdk)
+ 
 
 ## 🚀 Version History  
 DestNotify evolved through relentless iteration, with each version introducing groundbreaking features and refinements.  
@@ -413,49 +411,81 @@ DestNotify evolved through relentless iteration, with each version introducing g
 ## 📸 Screenshots: A Visual Feast
 
 DestNotify’s UI is a treat for the eyes! 📷
-- **Home Screen with Map**:
- ![](/images/1.jpg){: width="300"}
-  
-- **About page**:
-- ![](/images/2.jpg)
-- 
-- **App Features**:
-- ![](/images/3.jpg)
-- 
-- **PWA Feature**:
-- ![](/images/4.jpg)
-- 
-- **INSTALLED DestNotify App**:
-- ![](/images/5.jpg)
+- **Home Screen with Map**:  
+  <p align="center">
+    <img src="/images/1.jpg" width="250" style="border-radius:12px;" alt="Home Screen with Map" />
+  </p>
 
-- **Arrived at Destination**:
-- ![](/images/6.jpg)
-- 
-- **Email Content**:
- ![](/images/7.jpg)
-- 
-- **Favoriting a destination**: 
- ![](/images/8.jpg)
+- **About page**:  
+  <p align="center">
+    <img src="/images/2.jpg" width="250" style="border-radius:12px;" alt="About Page Screenshot" />
+  </p>
 
-- **Famous Foods at Favorite destination**:
- ![](/images/9.jpg)
-- 
--  **Local News Feature**:
-- ![](/images/10.jpg)
-- 
--  **Upcoimng Holidays Feature**:
-- ![](/images/11.jpg)
-- 
--  **Holidays Feature**:
-- ![](/15.jpg)
+- **App Features**:  
+  <p align="center">
+    <img src="/images/3.jpg" width="250" style="border-radius:12px;" alt="App Features Page" />
+  </p>
+
+- **PWA Feature**:  
+  <p align="center">
+    <img src="/images/4.jpg" width="250" style="border-radius:12px;" alt="Progressive Web App Install Prompt" />
+  </p>
+
+- **INSTALLED DestNotify App**:  
+  <p align="center">
+    <img src="/images/5.jpg" width="250" style="border-radius:12px;" alt="DestNotify Installed App View" />
+  </p>
+
+- **Arrived at Destination**:  
+  <p align="center">
+    <img src="/images/6.jpg" width="250" style="border-radius:12px;" alt="Destination Reached Alert" />
+  </p>
+
+- **Email Content**:  
+  <p align="center">
+    <img src="/images/7.jpg" width="250" style="border-radius:12px;" alt="Notification Email Content" />
+  </p>
+
+- **Favoriting a destination**:  
+  <p align="center">
+    <img src="/images/8.jpg" width="250" style="border-radius:12px;" alt="Mark Destination as Favorite" />
+  </p>
+
+- **Famous Foods at Favorite destination**:  
+  <p align="center">
+    <img src="/images/9.jpg" width="250" style="border-radius:12px;" alt="Famous Food Info for Favorite Destination" />
+  </p>
+
+- **Local News Feature**:  
+  <p align="center">
+    <img src="/images/10.jpg" width="250" style="border-radius:12px;" alt="Local News Section" />
+  </p>
+
+- **Upcoming Holidays Feature**:  
+  <p align="center">
+    <img src="/images/11.jpg" width="250" style="border-radius:12px;" alt="Upcoming Holidays View" />
+  </p>
+
+- **Holidays Feature**:  
+  <p align="center">
+    <img src="/15.jpg" width="250" style="border-radius:12px;" alt="Holidays Overview" />
+  </p>
+
+- **DestnotiX - In-house BOT**:  
+  <p align="center">
+    <img src="/images/12.jpg" width="250" style="border-radius:12px;" alt="Chatbot DestnotiX" />
+  </p>
+
 -  
--  **DestnotiX - inhouse BOT**:
-- ![](/images/12.jpg)
+  <p align="center">
+    <img src="/images/13.jpg" width="250" style="border-radius:12px;" alt="Extra Bot Interaction Screenshot" />
+  </p>
 
--  ![](/images/13.jpg)
-- 
--  **Deleting user data**:
-- ![](/images/14.jpg)
+- **Deleting user data**:  
+  <p align="center">
+    <img src="/images/14.jpg" width="250" style="border-radius:12px;" alt="Delete User Data Option" />
+  </p>
+
   
 ---
 
