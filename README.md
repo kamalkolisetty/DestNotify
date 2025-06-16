@@ -174,20 +174,21 @@ To craft a **holistic travel experience**, I chose APIs for **versatility and im
 This combo makes DestNotify **feature-rich**, **maintainable**, and a joy to use.
 
 ## Project Structure
+
 📦 DestNotify
-├── 📄 index.html           # Main UI with map, popups, and features
-├── 📄 about.html           # About page detailing app features
-├── 📄 manifest.json        # PWA config for installability and icons
-├── 📄 sw.js                # Service Worker for offline caching and sync
-├── 📄 script.js            # Core logic for geolocation, APIs, and features
-├── 📄 styles.css           # Custom styles for UI, animations, and popups
-├── 📁 assets               # Images, icons, and audio files
-│   ├── 📷 favicon.ico      # App icon for notifications
-│   ├── 🎵 alarm1.mp3       # Default alarm sound
-│   ├── 📷 logo.png         # App logo for manifest
-│   └── 📷 x2.png           # EmailJS template image
-└── 📄 README.md            # Project documentation
----
+├── 📄 index.html           # Main entry point (map, UI, and popups)
+├── 📄 script.js            # Core logic (geolocation, API calls)
+├── 📄 styles.css           # Custom styles and animations
+├── 📄 sw.js                # Service Worker (offline caching/sync)
+├── 📄 manifest.json        # PWA configuration (installability, icons)
+├── 📄 about.html           # About page (app features, instructions)
+├── 📁 assets               # Static resources
+│   ├── 📄 favicon.ico      # App icon
+│   ├── 🎵 alarm1.mp3       # Default alert sound
+│   ├── 📄 logo.png         # App logo (PWA)
+│   └── 📄 x2.png           # EmailJS template asset
+└── 📄 README.md            # Project docs (setup, usage)
+
 
 ## 🛠️ The Epic Development Journey
 
