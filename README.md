@@ -38,7 +38,23 @@ DestNotify is a powerhouse of features, each designed to make your travels effor
 
 - **📏 Real-Time Distance Tracking**  
   Stay locked on with distance updates every 5 seconds, calculated with precision to trigger alerts right on time. Optimized to sip battery, it keeps you in the loop without slowing you down. 📐
+The Haversine formula calculates the distance between two points on a sphere given their latitudes and longitudes. In DestNotify, it’s implemented in script.js and sw.js as:
 
+
+```javascript
+function getDistance(lat1, lon1, lat2, lon2) {
+  const R = 6371e3; // Earth radius in meters
+  const φ1 = (lat1 * Math.PI) / 180;
+  const φ2 = (lat2 * Math.PI) / 180;
+  const Δφ = ((lat2 - lat1) * Math.PI) / 180;
+  const Δλ = ((lon2 - lon1) * Math.PI) / 180;
+  const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+    Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c; // Distance in meters
+}
+
+This function is called every 5 seconds to track the user’s distance to destinations, ensuring timely alerts.
 - **⭐ Favorite Destinations for Quick Access**  
   Save your go-to spots with a glowing star button:
   - Favorites sport a **gold border** and jump to the top of your list for easy access.
@@ -156,6 +172,20 @@ To craft a **holistic travel experience**, I chose APIs for **versatility and im
 
 This combo makes DestNotify **feature-rich**, **maintainable**, and a joy to use.
 
+## Project Structure
+📦 DestNotify
+├── 📄 index.html           # Main UI with map, popups, and features
+├── 📄 about.html           # About page detailing app features
+├── 📄 manifest.json        # PWA config for installability and icons
+├── 📄 sw.js                # Service Worker for offline caching and sync
+├── 📄 script.js            # Core logic for geolocation, APIs, and features
+├── 📄 styles.css           # Custom styles for UI, animations, and popups
+├── 📁 assets               # Images, icons, and audio files
+│   ├── 📷 favicon.ico      # App icon for notifications
+│   ├── 🎵 alarm1.mp3       # Default alarm sound
+│   ├── 📷 logo.png         # App logo for manifest
+│   └── 📷 x2.png           # EmailJS template image
+└── 📄 README.md            # Project documentation
 ---
 
 ## 🛠️ The Epic Development Journey
