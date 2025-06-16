@@ -53,6 +53,7 @@ function getDistance(lat1, lon1, lat2, lon2) {
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   return R * c; // Distance in meters
 }
+```
 
 This function is called every 5 seconds to track the user’s distance to destinations, ensuring timely alerts.
 - **⭐ Favorite Destinations for Quick Access**  
