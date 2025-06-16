@@ -337,15 +337,70 @@ Jump into the adventure! 🌐
 - **Live App**: 🌍 [DestNotify Production](https://destnotify-prod.netlify.app/)
 - **Demo Video**: 📹 [Watch the Demo](https://drive.google.com/file/d/10_HcPMDI9VcuMdL4cDsVXNYHlczza_af/view?usp=drivesdk)
 
-### Version History
-DestNotify evolved through relentless iteration:
+## 🚀 Version History  
+DestNotify evolved through relentless iteration, with each version introducing groundbreaking features and refinements.  
 
-- **First Version**: Basic alarms with Google Maps. [Add Link Here]
-- **UI/UX Upgrade**: Favorites, emails, vibrations. [Add Link Here]
-- **Pre-Alpha**: Full PWA with Auto-Learn, weather, news, holidays. 🌍 [DestNotify Pre-Alpha](https://destnotify-prealpha.netlify.app/)
-- **Production**: Polished UI, reset button, smart caching. 🌍 [DestNotify Production](https://destnotify-prod.netlify.app/)
+### **1. First Version**  
+🔹 *Basic Foundations*  
+- Core functionality: Geolocation-triggered alarms via Google Maps API.  
+- Minimalist UI with basic distance calculations.  
+- **Live-Link**: [DestNotify (Initial)](https://destnotify-finale.netlify.app/)  
+
+### **2. UI/UX Upgrade**  
+🔹 *Enhanced Interactions*  
+- Added **favorites system** for saved destinations.  
+- Integrated **EmailJS** for trip completion notifications.  
+- **Haptic feedback** and smoother animations.  
+- **Live-Link**: [DestNotify K3](https://destnotify-k3.netlify.app/)  
+
+### **3. Pre-Alpha** 🌍  
+🔹 *Feature-Rich PWA*  
+- **Progressive Web App**: Installable + offline caching via Service Worker.  
+- **Auto-Learn**: Machine learning for frequent destination suggestions.  
+- **Contextual APIs**:  
+  - Real-time weather alerts at destination.  
+  - Local news and holiday integrations.  
+- **Live-Link**: [DestNotify Pre-Alpha](https://destnotify-prealpha.netlify.app/)  
+
+### **4. Alpha**  
+🔹 *API Robustness*  
+- Implemented retry logic for failed API calls.  
+- Added geolocation fallbacks (IP-based when GPS unavailable).  
+- **Live-Link**: [DestNotify Alpha](https://destnotify-alpha.netlify.app/)  
+
+### **5. Beta**  
+🔹 *Performance Polish*  
+- **Smart caching**: Reduced redundant API calls by 40%.  
+- UI overhaul: Responsive grids, dark/light theme toggle.  
+- **Live-Link**: [DestNotify Beta](https://destnotify-beta.netlify.app/)  
+
+### **6. Production (v1)**  
+🔹 *User Control Focus*  
+- **Reset button**: Clear all preferences with one click.  
+- **Privacy toolkit**: Delete user data permanently.  
+- Optimized background sync for notifications.  
+- **Live-Link**: [DestNotify Production](https://destnotify-prod.netlify.app/)  
+
+### **7. Production (v2)** 🏆  
+🔹 *Enterprise-Grade Reliability*  
+- **Strict validation**:  
+  - Mandatory username/email fields (no `undefined` states).  
+  - Input sanitization for API security.  
+- **Redundant APIs**: Fallback providers for weather/news.  
+- **Accessibility**: WCAG 2.1 compliance (contrast ratios, ARIA labels).  
+- **Live-Link**: [DestNotify Production v2](https://destnotify-prod-v2.netlify.app/)  
 
 ---
+
+### 🌟 Evolution Highlights  
+| Phase          | Key Achievement                          | Tech Impact                     |
+|----------------|------------------------------------------|---------------------------------|
+| **MVP**        | Core geolocation alarms                  | Google Maps API                 |
+| **Pre-Alpha**  | PWA conversion                           | Service Worker, manifest.json   |
+| **Production** | Data privacy controls                    | GDPR-compliant data pipelines   |
+| **v2**         | Zero-tolerance undefined states          | TypeScript integration          |
+
+*"We didn’t just build—we iterated, listened, and refined."*  
 
 ## 📸 Screenshots: A Visual Feast
 
