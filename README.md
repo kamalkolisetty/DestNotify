@@ -175,6 +175,7 @@ This combo makes DestNotify **feature-rich**, **maintainable**, and a joy to use
 
 ## Project Structure
 
+```
 📦 DestNotify
 ├── 📄 index.html           # Main entry point (map, UI, and popups)
 ├── 📄 script.js            # Core logic (geolocation, API calls)
@@ -189,6 +190,7 @@ This combo makes DestNotify **feature-rich**, **maintainable**, and a joy to use
 │   └── 📄 x2.png           # EmailJS template asset
 └── 📄 README.md            # Project docs (setup, usage)
 
+```
 
 ## 🛠️ The Epic Development Journey
 
@@ -277,7 +279,7 @@ Building DestNotify wasn’t all smooth sailing, but every challenge was a chanc
 7. **Favorite Foods Button Bug**  
    - **Problem**: The “Show Famous Foods” button appeared for non-favorite destinations.
    - **Fix**: Added conditional rendering in `renderDestinations` to restrict it to favorites.
-
+And many many more...
 ---
 
 ## 📡 API Integration: Powering the Magic
@@ -328,7 +330,7 @@ DestNotify’s APIs are the heart of its rich experience. Here’s how I wove th
 
 ---
 
-## 🚀 Try DestNotify Today!
+## 🚀 Try DestNotify Now!
 
 Jump into the adventure! 🌐
 
@@ -337,6 +339,7 @@ Jump into the adventure! 🌐
 
 ### Version History
 DestNotify evolved through relentless iteration:
+
 - **First Version**: Basic alarms with Google Maps. [Add Link Here]
 - **UI/UX Upgrade**: Favorites, emails, vibrations. [Add Link Here]
 - **Pre-Alpha**: Full PWA with Auto-Learn, weather, news, holidays. 🌍 [DestNotify Pre-Alpha](https://destnotify-prealpha.netlify.app/)
