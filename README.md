@@ -2,7 +2,7 @@
 <!-- PORTFOLIO DATA
 title: DestNotify
 description: Embark on worry-free adventures with DestNotify, a vibrant PWA that delivers smart location-based alarms, real-time distance tracking, and personalized travel perks like weather tips, local eats, movie picks, and a witty AI chatbot, all wrapped in a dazzling UI.
-skills: HTML5, CSS3, JavaScript, Multiple API Integrations, EmailJS, Service Workers, Bootstrap, Tailwind CSS
+skills: HTML5, CSS3, JavaScript, Multiple API Integrations,  Service Workers, Bootstrap
 image: https://github.com/kamalkolisetty/DestNotify/raw/main/x2.png
 -->
  
