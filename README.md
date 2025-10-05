@@ -1,6 +1,11 @@
 # 🚀 DestNotify - ALERTS THAT MOVE WITH YOU
-
-📍 **Never Miss a Stop, Never Miss the Vibe!**  
+<!-- PORTFOLIO DATA
+title: DestNotify
+description: Embark on worry-free adventures with DestNotify, a vibrant PWA that delivers smart location-based alarms, real-time distance tracking, and personalized travel perks like weather tips, local eats, movie picks, and a witty AI chatbot, all wrapped in a dazzling UI.
+skills: HTML5, CSS3, JavaScript, Google Maps API, Gemini API, OpenWeather API, Calendarific API, GNews API, YouTube API, EmailJS, Service Workers, Bootstrap, Tailwind CSS
+image: https://github.com/kamalkolisetty/DestNotify/raw/main/x2.png
+-->
+ 
 Welcome to **DestNotify**, a **feature-packed Progressive Web App (PWA)** crafted with passion   to redefine how you travel. Imagine a world where you never overshoot your bus stop, get lost in a new city, or miss out on the best local eats. DestNotify delivers **smart location-based alarms**, **real-time distance tracking**, and a treasure chest of personalized goodies—think **weather-based travel tips**, **mouthwatering food suggestions**, **movie picks with trailers**, **local news**, **holiday insights**, and a **witty AI chatbot** named DestiNotiX. When you arrive, expect **vibrations**, **custom alarms**, **push notifications**, and **party explosions** to celebrate your journey. This isn’t just an app—it’s your **all-in-one travel BFF**, keeping you informed, entertained, and right on track! 🎉
 
 
